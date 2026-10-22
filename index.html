@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan - Rizky & Aulia</title>
+    <title>Undangan Pernikahan - Gesang & ...</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
@@ -16,10 +16,13 @@
 
     <div class="w-full max-w-md min-h-screen bg-white shadow-2xl relative overflow-hidden flex flex-col items-center justify-between p-6 text-center">
         
-        <!-- Header Section -->
+        <!-- Bagian Depan (Cover) -->
         <div class="my-auto space-y-4">
             <p class="text-xs tracking-widest uppercase text-stone-500">The Wedding Of</p>
-            <h1 class="font-serif text-4xl italic text-stone-900">Rizky & Aulia</h1>
+            
+            <!-- UBAH NAMA ANDA DI SINI -->
+            <h1 class="font-serif text-4xl italic text-stone-900">Nama Anda & Pasangan</h1>
+            
             <p class="text-sm text-stone-600">Minggu, 15 Desember 2026</p>
             
             <div class="pt-6">
@@ -28,21 +31,42 @@
             </div>
         </div>
 
-        <!-- Action Button -->
+        <!-- Tombol Buka Undangan -->
         <div class="w-full pb-8">
-            <a href="#content" class="w-full block bg-stone-900 text-white py-3 rounded-full font-medium tracking-wide shadow-lg hover:bg-stone-800 transition">
+            <button onclick="bukaUndangan()" class="w-full block bg-stone-900 text-white py-3 rounded-full font-medium tracking-wide shadow-lg hover:bg-stone-800 transition cursor-pointer">
                 Buka Undangan
-            </a>
+            </button>
         </div>
 
     </div>
 
-    <!-- Script untuk mengambil nama tamu dari URL (Contoh: ?to=Budi) -->
+    <!-- Bagian Isi Undangan (Akan muncul setelah tombol diklik) -->
+    <div id="content" class="hidden w-full max-w-md min-h-screen bg-stone-900 text-stone-100 p-8 flex flex-col justify-center items-center text-center">
+        <h2 class="font-serif text-3xl italic mb-4">Terima Kasih</h2>
+        <p class="text-stone-300 text-sm leading-relaxed mb-6">
+            Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.
+        </p>
+        <div class="bg-stone-800 p-4 rounded-xl w-full">
+            <p class="text-xs text-stone-400 uppercase tracking-widest mb-1">Waktu & Tempat</p>
+            <p class="font-semibold text-sm">Gedung Serbaguna, Jakarta</p>
+            <p class="text-xs text-stone-300 mt-1">Pukul 10.00 WIB - Selesai</p>
+        </div>
+    </div>
+
+    <!-- Script untuk Interaksi Tombol & Nama Tamu -->
     <script>
+        // Mengambil nama tamu dari URL (contoh: ?to=Budi)
         const urlParams = new URLSearchParams(window.location.search);
         const tamu = urlParams.get('to');
         if (tamu) {
             document.getElementById('guest-name').textContent = decodeURIComponent(tamu);
+        }
+
+        // Fungsi saat tombol "Buka Undangan" diklik
+        function bukaUndangan() {
+            const content = document.getElementById('content');
+            content.classList.remove('hidden');
+            content.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
